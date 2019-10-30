@@ -13,10 +13,11 @@ CREATE TABLE foto(
 );
 
 CREATE TABLE banda(
+
     id_banda BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
-	id_agenda BIGINT NOT NULL,
     email VARCHAR(50) UNIQUE ,
     id_foto BIGINT,
+    id_reserva BIGINT,
     integrantes INT,
     nome VARCHAR(50),
     senha VARCHAR(20),
@@ -57,7 +58,7 @@ CREATE TABLE localizacao(
 CREATE TABLE estudio(
 
     id_estudio BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
-    id_agenda BIGINT NOT NULL,
+    id_reserva BIGINT,
 	cnpj VARCHAR(20),
     email VARCHAR(50),
     id_foto BIGINT NOT NULL,
@@ -105,28 +106,21 @@ CREATE TABLE subservico(
     FOREIGN KEY(id_servico) REFERENCES servico(id_servico) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE agenda(
-	id_agenda BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
-    id_banda BIGINT,
-    id_estudio BIGINT,
-    PRIMARY KEY(id_agenda),
-    FOREIGN KEY(id_estudio) REFERENCES estudio(id_estudio) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(id_banda) REFERENCES banda(id_banda) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE reserva(
 
     id_reserva BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
-    id_agenda BIGINT NOT NULL,
     id_banda BIGINT NOT NULL,
+    id_estudio BIGINT NOT NULL,
 	data_reserva DATE,
     horario_final TIME,
     horario_inicio TIME,
+    preco DOUBLE NOT NULL,
     
     PRIMARY KEY(id_reserva),
     FOREIGN KEY(id_banda) REFERENCES banda(id_banda) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(id_agenda) REFERENCES agenda(id_agenda) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(id_estudio) REFERENCES estudio(id_estudio) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 CREATE TABLE chat(
     id_banda BIGINT NOT NULL,
     id_estudio BIGINT NOT NULL,
@@ -153,13 +147,7 @@ CREATE TABLE mensagem(
 ALTER TABLE foto ADD FOREIGN KEY(id_banda) REFERENCES banda(id_banda) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE foto ADD FOREIGN KEY(id_estudio) REFERENCES estudio(id_estudio) ON UPDATE CASCADE ON DELETE CASCADE;
 
+-- Chave estrangeira para reservas
 
-
--- Chave estrangeira para tabela banda
-
-ALTER TABLE banda ADD FOREIGN KEY(id_agenda) REFERENCES agenda(id_agenda) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
--- Chave estrangeira para tabela estudio
-
-ALTER TABLE estudio ADD FOREIGN KEY(id_agenda) REFERENCES agenda(id_agenda) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE banda ADD FOREIGN KEY(id_reserva) REFERENCES reserva(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE estudio ADD FOREIGN KEY(id_reserva) REFERENCES reserva(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE;
