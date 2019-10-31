@@ -17,7 +17,6 @@ CREATE TABLE banda(
     id_banda BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
     email VARCHAR(50) UNIQUE ,
     id_foto BIGINT,
-    id_reserva BIGINT,
     integrantes INT,
     nome VARCHAR(50),
     senha VARCHAR(20),
@@ -58,13 +57,13 @@ CREATE TABLE localizacao(
 CREATE TABLE estudio(
 
     id_estudio BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
-    id_reserva BIGINT,
 	cnpj VARCHAR(20),
     email VARCHAR(50),
     id_foto BIGINT NOT NULL,
     id_localizacao BIGINT NOT NULL,
     nome VARCHAR(30),
     senha VARCHAR(15),
+	preco DOUBLE NOT NULL,
 
     
     PRIMARY KEY(id_estudio),
@@ -114,7 +113,7 @@ CREATE TABLE reserva(
 	data_reserva DATE,
     horario_final TIME,
     horario_inicio TIME,
-    preco DOUBLE NOT NULL,
+    total_a_pagar DOUBLE NOT NULL,
     
     PRIMARY KEY(id_reserva),
     FOREIGN KEY(id_banda) REFERENCES banda(id_banda) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -146,8 +145,3 @@ CREATE TABLE mensagem(
 
 ALTER TABLE foto ADD FOREIGN KEY(id_banda) REFERENCES banda(id_banda) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE foto ADD FOREIGN KEY(id_estudio) REFERENCES estudio(id_estudio) ON UPDATE CASCADE ON DELETE CASCADE;
-
--- Chave estrangeira para reservas
-
-ALTER TABLE banda ADD FOREIGN KEY(id_reserva) REFERENCES reserva(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE estudio ADD FOREIGN KEY(id_reserva) REFERENCES reserva(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE;
