@@ -64,6 +64,7 @@ CREATE TABLE estudio(
     nome VARCHAR(30),
     senha VARCHAR(15),
 	preco DOUBLE NOT NULL,
+    descricao VARCHAR(1000),
 
     
     PRIMARY KEY(id_estudio),
