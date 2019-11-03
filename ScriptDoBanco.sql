@@ -20,6 +20,7 @@ CREATE TABLE banda(
     integrantes INT,
     nome VARCHAR(50),
     senha VARCHAR(20),
+    telefone VARCHAR(20),
     
     PRIMARY KEY(id_banda),
     FOREIGN KEY(id_foto) REFERENCES foto(id_foto) ON DELETE CASCADE ON UPDATE CASCADE
@@ -65,7 +66,7 @@ CREATE TABLE estudio(
     senha VARCHAR(15),
 	preco DOUBLE NOT NULL,
     descricao VARCHAR(1000),
-
+	telefone VARCHAR(20),
     
     PRIMARY KEY(id_estudio),
     FOREIGN KEY(id_foto) REFERENCES foto(id_foto) ON DELETE CASCADE ON UPDATE CASCADE,
