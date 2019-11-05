@@ -2,6 +2,15 @@ DROP DATABASE triband;
 CREATE DATABASE triband;
 USE triband;
 
+CREATE FUNCTION haversine(lat1 NUMERIC(10,6),long1 NUMERIC(10,6), lat2 NUMERIC(10,6), long2 NUMERIC(10,6))
+RETURNS DOUBLE
+RETURN POW(0.5*(RADIANS(lat2-lat1)), 2) + COS(RADIANS(lat1))*COS(RADIANS(lat2))*POW(0.5*(RADIANS(long2-long1)),2);
+
+
+CREATE FUNCTION distancia(lat1 NUMERIC(10,6),long1 NUMERIC(10,6), lat2 NUMERIC(10,6), long2 NUMERIC(10,6))
+RETURNS DOUBLE
+RETURN 12742 * ATAN2(SQRT(haversine(lat1, long1, lat2, long2)), SQRT(1-haversine(lat1, long1, lat2, long2))) ;
+
 CREATE TABLE foto(
 
 	id_foto BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
@@ -46,10 +55,10 @@ CREATE TABLE localizacao(
     cep BIGINT(8),
     cidade varchar(35),
     estado varchar(20),
-    latitude DOUBLE,
-    longitude DOUBLE,
     numero INT,
     rua VARCHAR(30),
+    latitude DOUBLE,
+    longitude DOUBLE,
     
 	PRIMARY KEY(id_localizacao)
 );
