@@ -69,7 +69,7 @@ CREATE TABLE estudio(
     id_estudio BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
 	cnpj VARCHAR(20),
     email VARCHAR(50),
-    id_foto BIGINT NOT NULL,
+    id_foto BIGINT ,
     id_localizacao BIGINT NOT NULL,
     nome VARCHAR(30),
     senha VARCHAR(15),
@@ -122,8 +122,8 @@ CREATE TABLE reserva(
     id_banda BIGINT NOT NULL,
     id_estudio BIGINT NOT NULL,
 	data_reserva DATE,
-    horario_final TIME,
     horario_inicio TIME,
+    horario_final TIME,
     total_a_pagar DOUBLE NOT NULL,
     
     PRIMARY KEY(id_reserva),
@@ -132,9 +132,10 @@ CREATE TABLE reserva(
 );
 
 CREATE TABLE chat(
+
+    id_chat BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
     id_banda BIGINT NOT NULL,
     id_estudio BIGINT NOT NULL,
-    id_chat BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
     
     PRIMARY KEY(id_chat),
     FOREIGN KEY(id_banda) REFERENCES banda(id_banda) ON DELETE CASCADE ON UPDATE CASCADE,
