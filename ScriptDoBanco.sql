@@ -11,11 +11,11 @@ CREATE FUNCTION distancia(lat1 NUMERIC(10,6),long1 NUMERIC(10,6), lat2 NUMERIC(1
 RETURNS DOUBLE
 RETURN 12742 * ATAN2(SQRT(haversine(lat1, long1, lat2, long2)), SQRT(1-haversine(lat1, long1, lat2, long2))) ;
 
+
+
 CREATE TABLE foto(
 
 	id_foto BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
-    id_banda BIGINT,
-    id_estudio BIGINT,
     path VARCHAR(300),
     
     PRIMARY KEY(id_foto)

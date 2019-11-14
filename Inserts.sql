@@ -10,21 +10,21 @@ INSERT INTO localizacao VALUES
 (7,'g',7,'g','g',7,'g', -28.452159, -52.199144);
 
 INSERT INTO foto VALUES 
-(1,null,null,'/foto1.jpg'),
-(2,null,null,'/foto2.jpg'),
-(3,null,null,'/foto3.jpg'),
-(4,null,null,'/foto4.jpg'),
-(5,null,null,'/foto5.jpg'),
-(6,null,null,'/foto6.jpg'),
-(7,null,null,'/foto7.jpg'),
+(1,'/foto1.jpg'),
+(2,'/foto2.jpg'),
+(3,'/foto3.jpg'),
+(4,'/foto4.jpg'),
+(5,'/foto5.jpg'),
+(6,'/foto6.jpg'),
+(7,'/foto7.jpg'),
 
-(8,null,null,'/foto8.jpg'),
-(9,null,null,'/foto9.jpg'),
-(10,null,null,'/foto10.jpg'),
-(11,null,null,'/foto11.jpg'),
-(12,null,null,'/foto12.jpg'),
-(13,null,null,'/foto13.jpg'),
-(14,null,null,'/foto14.jpg')
+(8,'/foto8.jpg'),
+(9,'/foto9.jpg'),
+(10,'/foto10.jpg'),
+(11,'/foto11.jpg'),
+(12,'/foto12.jpg'),
+(13,'/foto13.jpg'),
+(14,'/foto14.jpg')
 ;
 
 INSERT INTO banda VALUES 
@@ -118,6 +118,5 @@ INSERT INTO subservico VALUES
 (5,'ABCssssD', 5),
 (6,'ABCDd',    6),
 (7,'ABdasCD', 7);
-
 
 
